@@ -21,6 +21,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import Layout from "./layout/Layout.jsx";
 import Landing from "./Landing/Landing.jsx";
+import Contact from "./Landing/Contact.jsx";
 
 
 
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <Landing></Landing>
+      },
+      {
+        path: '/contact',
+        element: <Contact></Contact>
       },
     ]
   }

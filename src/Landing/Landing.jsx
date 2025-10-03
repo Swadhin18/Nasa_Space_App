@@ -8,6 +8,7 @@ import Impact from './Impact'
 import Objectives from './Objectives'
 import Problem from './Problem'
 import Team from './Team'
+import Tracking from './Tracking'
 
 
 
@@ -18,6 +19,7 @@ export default function Landing() {
       <ChallengeOverview></ChallengeOverview>
       <DataVisualization></DataVisualization>
        <Problem></Problem>
+       <Tracking></Tracking>
       <Objectives></Objectives>
       <Dataset></Dataset>
       {/* <Methodology></Methodology> */}
