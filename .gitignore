@@ -1,39 +1,144 @@
-Python
+# =========================
+# 📦 Node.js / TypeScript
+# =========================
 
-*.pyc pycache/ *.pyo *.pyd .Python env/ venv/ ENV/ env.bak/ venv.bak/ .pytest_cache/ *.egg-info/ dist/ build/
+# Node modules
+node_modules/
 
-Geospatial/Data (PACE, MODIS, SWOT)
+# Build output
+dist/
+build/
 
-*.nc data/ datasets/ *.geojson *.tiff *.shp *.shx *.dbf
+# Environment files
+.env
+.env.local
+.env.development
+.env.production
 
-Machine Learning
+# Prisma related
+prisma/migrations/
+prisma/*.db
+prisma/dev.db
 
-*.h5 *.pth *.pkl models/ checkpoints/ logs/ tensorboard/
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
-Docker
+# TypeScript cache
+*.tsbuildinfo
 
-docker-compose.override.yml .docker/ Dockerfile.local *.dockerignore
+# Temporary files
+*.tmp
+*.swp
 
-Real-Time/Visualization
+# Coverage & testing
+coverage/
+*.lcov
 
-cache/ outputs/ *.png *.jpg *.jpeg *.gif
+# Editor & IDE settings
+.vscode/
+.idea/
 
-Sensitive Files (NASA Earthdata API keys, credentials)
+# OS generated files
+.DS_Store
+Thumbs.db
 
-.env secrets/ credentials.json *.key *.pem
+# Docker related
+docker-compose.override.yml
+.docker/
+Dockerfile.local
+*.dockerignore
 
-General Development
+# Optional: Ignore seed scripts if they are only for local use
+# prisma/seed-admin.js
+# prisma/seed-admin.ts
 
-*.log .DS_Store .vscode/ .idea/ *.swp *.swo *.swn
 
-Local Development and Testing
+# =========================
+# 🐍 Python / ML Related
+# =========================
 
-coverage/ .coverage *.cache *.bak *.swp *~
+# Python build/cache
+*.pyc
+pycache/
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+.pytest_cache/
+*.egg-info/
+dist/
+build/
 
-Jupyter Notebooks (Google Colab)
+# ML models & checkpoints
+*.h5
+*.pth
+*.pkl
+models/
+checkpoints/
+logs/
+tensorboard/
 
+# Jupyter Notebooks
 .ipynb_checkpoints/
 
-Documentation and Build Artifacts
+# Documentation and build artifacts
+_site/
+docs/_build/
+*.egg
+*.whl
 
-_site/ docs/_build/ *.egg *.egg-info/ *.whl
+
+# =========================
+# 🌍 Geospatial / Data
+# =========================
+
+*.nc
+data/
+datasets/
+*.geojson
+*.tiff
+*.shp
+*.shx
+*.dbf
+
+
+# =========================
+# 📊 Real-Time / Visualization
+# =========================
+
+cache/
+outputs/
+*.png
+*.jpg
+*.jpeg
+*.gif
+
+
+# =========================
+# 🔐 Sensitive Files
+# =========================
+
+secrets/
+credentials.json
+*.key
+*.pem
+
+
+# =========================
+# 🛠️ General Dev / Misc
+# =========================
+
+*.log
+*.swp
+*.swo
+*.swn
+*.bak
+*~

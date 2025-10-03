@@ -14,12 +14,12 @@ enum Role {
 }
 
 model User {
-  id         Int      @id @default(autoincrement())
-  email      String   @unique
-  password   String
-  role       Role     @default(PUBLIC)
-  apiKeys    ApiKey[]
-  createdAt  DateTime @default(now())
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  password  String
+  role      Role     @default(PUBLIC)
+  apiKeys   ApiKey[]
+  createdAt DateTime @default(now())
 }
 
 model ApiKey {
@@ -32,32 +32,33 @@ model ApiKey {
 }
 
 model Dataset {
-  id            String      @id @default(cuid())
-  source        String      // PACE | MODIS | SWOT
-  type          String      // chlorophyll | SST | eddy
+  id            String         @id @default(cuid())
+  source        String // PACE | MODIS | SWOT
+  type          String // chlorophyll | SST | eddy
   fileUrl       String
-  ingestionDate DateTime    @default(now())
-  status        DatasetStatus @default(PENDING)
+  ingestionDate DateTime       @default(now())
+  status        DatasetStatus  @default(PENDING)
   jobs          IngestionJob[]
 
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  Observation Observation[]
 }
 
 model IngestionJob {
-  id          String      @id @default(cuid())
+  id          String    @id @default(cuid())
   datasetId   String
-  dataset     Dataset     @relation(fields: [datasetId], references: [id])
-  status      JobStatus   @default(PENDING)
+  dataset     Dataset   @relation(fields: [datasetId], references: [id])
+  status      JobStatus @default(PENDING)
   startedAt   DateTime?
   completedAt DateTime?
   error       String?
 }
 
 model Observation {
-  id           String    @id @default(cuid())
+  id           String   @id @default(cuid())
   datasetId    String
-  dataset      Dataset   @relation(fields: [datasetId], references: [id])
+  dataset      Dataset  @relation(fields: [datasetId], references: [id])
   lat          Float
   lon          Float
   chlorophyll  Float?
@@ -65,7 +66,7 @@ model Observation {
   eddyStrength Float?
   timestamp    DateTime
 
-  createdAt    DateTime @default(now())
+  createdAt DateTime @default(now())
 }
 
 enum DatasetStatus {
@@ -83,62 +84,62 @@ enum JobStatus {
 }
 
 model Shark {
-  id            String   @id @default(cuid())
-  tagId         String   @unique
-  species       String?
-  sex           String?
-  lengthCm      Float?
-  weightKg      Float?
-  releaseDate   DateTime?
-  trackingData  TrackingData[]
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+  id           String         @id @default(cuid())
+  tagId        String         @unique
+  species      String?
+  sex          String?
+  lengthCm     Float?
+  weightKg     Float?
+  releaseDate  DateTime?
+  trackingData TrackingData[]
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
 }
 
 model TrackingData {
-  id           String    @id @default(cuid())
-  sharkId      String
-  shark        Shark     @relation(fields: [sharkId], references: [id])
-  lat          Float
-  lon          Float
-  timestamp    DateTime
-  depth        Float?
-  temperature  Float?
-  eddyId       String?   // (optional) Eddy / ocean feature reference
-  chlorophyll  Float?
-  sst          Float?
-  createdAt    DateTime  @default(now())
-}
-
-model SharkHotspot {
-  id           String   @id @default(auto()) @map("_id") @db.ObjectId
-  region       String
-  latitude     Float
-  longitude    Float
-  count        Int
-  avgTemp      Float?
-  avgChl       Float?
-  startTime    DateTime
-  endTime      DateTime
-  createdAt    DateTime @default(now())
-}
-
-model SharkSeasonalStats {
-  id          String   @id @default(auto()) @map("_id") @db.ObjectId
-  season      String   // e.g., "Winter-2025"
-  totalTags   Int
-  uniqueSharks Int
-  avgSpeed    Float?
-  hotspotCount Int
+  id          String   @id @default(cuid())
+  sharkId     String
+  shark       Shark    @relation(fields: [sharkId], references: [id])
+  lat         Float
+  lon         Float
+  timestamp   DateTime
+  depth       Float?
+  temperature Float?
+  eddyId      String? // (optional) Eddy / ocean feature reference
+  chlorophyll Float?
+  sst         Float?
   createdAt   DateTime @default(now())
 }
 
+model SharkHotspot {
+  id        String   @id @default(cuid())
+  region    String
+  latitude  Float
+  longitude Float
+  count     Int
+  avgTemp   Float?
+  avgChl    Float?
+  startTime DateTime
+  endTime   DateTime
+  createdAt DateTime @default(now())
+}
+
+model SharkSeasonalStats {
+  id           String   @id @default(cuid())
+  season       String // e.g., "Winter-2025"
+  totalTags    Int
+  uniqueSharks Int
+  avgSpeed     Float?
+  hotspotCount Int
+  createdAt    DateTime @default(now())
+}
+
 model MLModel {
-  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  id           String   @id @default(cuid())
   name         String
   version      String
   description  String?
-  endpointUrl  String   // Python ML সার্ভিস বা FastAPI endpoint
+  endpointUrl  String // Python ML সার্ভিস বা FastAPI endpoint
   inputSchema  Json
   outputSchema Json
   status       String   @default("active") // active | deprecated
