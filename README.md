@@ -1,3 +1,12 @@
+## Install Dependencies
+
+Clone the project and run:
+
+```bash
+npm install
+&
+npm run start:dev
+
 # Nasa_Space_App
 PACE/SWOT datasets, backend stack
 
